@@ -1,133 +1,115 @@
-# 벡터 : 동일한 자료가 일차원으로 나열된 것
-vec1 <- c(10,20,30,40,50)
-vec1
-vec2 <- c("사과", 100, TRUE)
-vec2
-vec3 <- c(100.3, 33, TRUE, FALSE)
-vec3
+# 주석 : 프로그램은 번역하지 않고 넘어가는 부분
 
-# 각 열에 해당하는 벡터 생성하기
-v_no <- seq(1,7)
-v_no
+# 변수 : 데이터를 저장할 수 있는 임시적인 공간
 
-v_name <- c("Apple", "Peach", "Banana", "Grape", "Kiwi", "Orange", "Mango")
-v_name
+# num이라는 이름의 변수 안에 정수 100을 저장
+num <- 100
+num
 
-v_price <- c(500,200,100,300,150,250,450)
-v_price
+# 함수 : 데이터를 넣으면 특정한 기능을 수행해 데이터를 가공하여 값을 출력
+sum(1,50,60,90,99,87,65,12,33,54,15)
 
-v_stock <- c(5,2,4,7,5,3,8)
-v_stock
+# 패키지 : 함수들을 모아놓은 묶음
 
-# 데이터 프레임 만드는 방법 data.frame()
-sales <- data.frame(v_no, v_name, v_price, v_stock)
-sales
+# 변수의 데이터 타입
+# 숫자형 : 정수, 실수 등의 숫자들을 저장할 수 있는 형태
+num1 <- 10.3
+# 문자형 : 알파벳, 한글 등 문자 데이터를 저장할 수 있는 형태
+text1 <- "Hello World!"
+text2 <- 'Hello World!'
+# 논리형 : 참, 거짓을 저장할 수 있는 형태
+isCheck <- TRUE
+isCheck <- FALSE
+isCheck <- T
+isCheck <- F
+# NA & NULL 형 : 데이터의 상황을 저장할 수 있는 형태
+# NA -> 결측치 : 데이터는 있는데 정의되어 있지 않음
+# NULL -> 비어있는 값
+sum(1,2,3,4,5,NA)
+sum(1,2,3,4,5,NULL)
 
-# 자료구조를 출력하는 방법
-View(sales)
+name<-'박병관'
+name
+name<-'황정민'
+name
 
-# DataFrame에서 원하는 데이터만 조회하기
-# sales 데이터프레임에서 v_name 값만 뽑아서 보기
-sales$v_name
-sales[3,2]
-sales[3,]
-sales[,2]
-sales[1:2, 1:2]
+# 자료구조 : 대량의 데이터를 효과적으로 관리할 수 있는 방법
+# 벡터(Vector) : R에서 가장 기본이 되는 데이터 구조
+#                동일한 유형의 데이터가 1차원으로 구성 (배열과 비슷)
+# 숫자형 벡터
+v_num <- c(10,15,20)
+v_num
+# 문자형 벡터
+v_text <- c('사과', '딸기', '참외', '수박', '귤', '복숭아')
+v_text
+# 논리형 벡터
+v_log <- c(T,F,T,F,T,T)
+v_log
 
-# 데이터프레임에서 컬럼의 개수를 알 수 있는 방법
-ncol(sales)
-sales[1,1:ncol(sales)]
-sales[1,3:ncol(sales)]
-sales[1,]
+v_text[5]
 
-# 데이터프레임에서 행의 개수를 알 수 있는 방법
-nrow(sales)
-sales[3:nrow(sales),1]
+# 일률적인 벡터 생성(순차적으로 진행하는것)
+v1 <- c(1,2,3,4,5,6,7,8,9,10)
+v2 <- seq(1,10)
+v3 <- 1:10
+v4 <- seq(1,100, by = 4)
+v5<- seq(1,100, length.out = 4)
+v5
 
-# 데이터프레임에서 컬럼의 이름들만 추출하는 방법
-names(sales)
+# 벡터의 반복
+x <- seq(1,3)
+rep(x, times=2)
+rep(x, each = 2)
 
-# 다양한 함수를 데이터프레임에 적용하기
-sum(sales$v_price)
-mean(sales$v_price)
-round(mean(sales$v_price), digits = 2)
-min(sales$v_price)
-max(sales$v_price)
-range(sales$v_price)
+# 실습
+foods <- c('간짜장', '족발', '굴보쌈', '참돔', '감자탕', '순대국밥')
 
+# 문제1. 간짜장 굴보쌈 감자탕을 콘솔에 출력하시오
+c(foods[1], foods[3], foods[5])
+foods[c(1,3,5)]
+foods[seq(1,6,by=2)]
 
-# 1. DataFrame 'Score' 생성
-no <- 1:10
-name <- c('이은비','김서아','장하윤','유이서','나서윤','이지안','박나은','황유나','김하율','윤시아')
-kor <- c(80,76,26,61,44,19,53,81,26,64)
-eng <- c(8,76,69,18,82,56,48,14,73,83)
-math <- c(65,27,100,76,37,77,73,19,74,60)
-math
-score <- data.frame(no,name,kor,eng,math)
-View(score)
+foods[seq(2,6,by=2)]
 
-# 2. Kor열 데이터만 출력
-score$kor
-score[,3]
-
-# 3. eng열 데이터만 출력
-score$eng
-
-# 4. 컬럼 개수 출력
-ncol(score)
-
-# 5. 행 개수 출력
-nrow(score)
-
-# 6. 컬럼명을 출력
-names(score)
-
-# 7. kor의 평균점수를 소수 첫째자리까지 출력
-round(mean(score$kor),digits = 1)
-sum(score$kor)
-
-# 8. eng중 가장 큰 점수 출력
-max(score$eng)
-
-# 9. math 중 가장 작은 점수 출력
-min(score$math)
-
-# 10. 학생별 평균 점수
-for (i in 1:10){
-  print(round((sum(score[i,3:5]) / 3),digits = 1))
+f <- ""
+for(i in 1:6){
+  if (i %% 2 == 0){
+    f <- f + foods[i]
+  }
 }
+print(f)
 
+# 불리언 인덱싱 > true에 해당되는 값만 꺼내기
+x <- seq(1,20,by=3)
 
+# x의 요소 중 5보다 큰 값만 꺼내기
+x[x > 5]
+# x의 요소 중 7과 같은 값만 꺼내기
+x[x == 7]
 
+# 특정 요소를 제거하고 보기
+x[-c(1,2,3)]
 
+# 특정 위치의 요소값을 변경
+x[c(1,2)]
+x[c(1,2)] <- 99
+x
 
+# 문제1. 100부터 300까지 숫자중 3씩 증가하는 숫자 v1을 출력하세요
+v1 <- seq(100,300,by=3)
+v1
 
+# 문제2. 20번째부터 30번째에 있는 숫자만 출력하세요
+v1[20:30]
 
-# 내가 작업하는 공간의 파일들 목록보기
-list.files()
+# 문제3. 20번째부터 30번째에 있는 숫자를 제외하고 출력하세요
+v1[-c(20:30)]
+v1[-seq(20:30)]
+v1[seq(20,30)]
+v2 = v1[-(20:30)]
+v2
 
-# 엑셀 데이터파일을 읽을 수 있는 함수들이 모여있는 패키지 다운로드 하기
-install.packages("readxl")
+# 문제4. v1 중 200보다 큰 수를 출력하세요.
+v1[v1 > 200]
 
-# 패키지를 로딩하여 사용하기
-library(readxl)
-
-# 함수를 사용하여 파일 불러오기
-Score <- read_excel("score.xlsx")
-View(Score)
-
-
-
-
-
-
-
-# csv파일을 읽어와서 데이터프레임 형태로 저장
-titanic <- read.csv('titanic.csv')
-titanic
-
-# 문자열 데이터를 범주형으로 읽어들이는 옵션
-titanic_2 <- read.csv("titanic_2.csv", stringsAsFactors = TRUE)
-
-list.files()
-heart <- read.csv("heart_failure_clinical_records_dataset.csv", stringsAsFactors = TRUE)
+v1[c(20:30, by=3)]
